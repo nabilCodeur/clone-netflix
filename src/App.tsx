@@ -1,7 +1,16 @@
+import { Route, Routes } from "react-router-dom";
 import "./index.css";
+import Home from "./components/Home";
+import QueryProvider from "./providers/query";
 
 function App() {
-  return <div className="text-3xl underline">Initialisation</div>;
+  return (
+    <QueryProvider>
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
+    </QueryProvider>
+  );
 }
 
 export default App;
