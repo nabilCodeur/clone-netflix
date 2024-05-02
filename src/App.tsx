@@ -1,5 +1,7 @@
+import "./index.css";
+
 function App() {
-  return <>Initialisation</>;
+  return <div className="text-3xl underline">Initialisation</div>;
 }
 
 export default App;
