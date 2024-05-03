@@ -1,13 +1,5 @@
-import { z } from "zod";
-import { MediaEndpointApi } from "../types";
-import { buildImageUrl } from "../utils/buildImageUrl";
-import { MediaSchema, clientApiList } from "../utils/clientApiList";
-import getRandomElementInArray from "../utils/getRandomElementInArray";
-import { clientApiMedia } from "../utils/clientApiMedia";
-import { useQuery } from "@tanstack/react-query";
-import getRandomMedia from "../utils/getRandomMedia";
-import getRandomTypeMedia from "../utils/getRandomTypeMedia";
 import useHeader from "../hooks/useHeader";
+import { MediaEndpointApi } from "../types";
 import TopHeader from "./TopHeader";
 
 // test tv id 2734

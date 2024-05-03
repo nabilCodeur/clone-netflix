@@ -1,6 +1,5 @@
-import React from "react";
-import NetflixRow from "./NetflixRow";
 import NetflixHeader from "./NetflixHeader";
+import NetflixRow from "./NetflixRow";
 
 const NetflixMovies = () => {
   return (
