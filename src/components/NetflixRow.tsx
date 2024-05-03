@@ -1,46 +1,53 @@
 import { useQuery } from "@tanstack/react-query";
-import { buildImageUrl, clientApi } from "../utils";
+
 import {
-  CategoryEndpointApi,
+  CategoryEndpointApiList,
   ImageEndpointApi,
   MediaEndpointApi,
 } from "../types";
 import { Link } from "react-router-dom";
+import { clientApiList } from "../utils/clientApiList";
+import { buildImageUrl } from "../utils/buildImageUrl";
 
 const NetflixRow = ({
   media,
   category,
-  formatImage,
+  sizeImage,
+  formatImage = "large",
   title,
 }: {
   media: MediaEndpointApi;
-  category: CategoryEndpointApi;
-  formatImage: ImageEndpointApi;
+  category: CategoryEndpointApiList;
+  formatImage: "large" | "poster";
+  sizeImage: ImageEndpointApi;
   title: string;
 }) => {
-  const getMovies = () => clientApi(media, category);
-  const { data, isLoading, error } = useQuery({
+  const getMovies = () => clientApiList(media, category);
+  const { data, isLoading, error, isError } = useQuery({
     queryKey: [`${media}/${category}`],
     queryFn: getMovies,
   });
 
-  const imageExempleSource =
-    "https://image.tmdb.org/t/p/w500/1E5baAaEse26fej7uHcjOgEE2t2.jpg";
+  if (isError) return <p>Error : {error?.message}</p>;
 
   return (
     <div className="">
       <h1>{title}</h1>
-      <div className="flex space-x-2">
+
+      <div className="flex space-x-2 ">
         {isLoading
           ? "chargement"
-          : data.map((movie) => {
+          : data?.map((movie) => {
+              const fetchImageFormat = buildImageUrl(
+                sizeImage,
+                formatImage === "large"
+                  ? movie.backdrop_path
+                  : movie.poster_path
+              );
               return (
-                <Link to="/">
-                  <img
-                    src={buildImageUrl("w500", movie.backdrop_path)}
-                    alt="movie"
-                  />
-                </Link>
+                // <Link to={`/${media}/${movie.id}`} key={movie.id}>
+                <img src={fetchImageFormat} alt={movie.title ?? media} />
+                // </Link>
               );
             })}
       </div>

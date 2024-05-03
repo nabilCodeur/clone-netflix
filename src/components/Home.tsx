@@ -1,21 +1,30 @@
-import { useQuery } from "@tanstack/react-query";
-import { buildImageUrl, clientApi } from "../utils";
+import NetflixHeader from "./NetflixHeader";
 import NetflixRow from "./NetflixRow";
 
 const Home = () => {
   return (
     <div>
+      <NetflixHeader />
       <NetflixRow
         category="popular"
-        formatImage="w500"
+        sizeImage="w500"
         media="movie"
         title="Films populaires"
+        formatImage="large"
       />
       <NetflixRow
         category="top_rated"
-        formatImage="w500"
+        sizeImage="w500"
         media="tv"
         title="Séries les mieux notées"
+        formatImage="poster"
+      />
+      <NetflixRow
+        category="top_rated"
+        sizeImage="w500"
+        media="movie"
+        title="Films les mieux notés"
+        formatImage="poster"
       />
     </div>
   );
