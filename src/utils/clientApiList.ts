@@ -1,8 +1,7 @@
 import { z } from "zod";
 import {
-  CategoryEndpointApi,
   CategoryEndpointApiList,
-  MediaEndpointApi,
+  MediaEndpointApi
 } from "../types";
 
 export const MediaSchema = z.object({

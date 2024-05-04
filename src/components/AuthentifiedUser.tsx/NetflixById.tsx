@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
-import { MediaEndpointApi } from "../types";
-import NetflixHeader from "./NetflixHeader";
+import { MediaEndpointApi } from "../../types";
 import NetflixRow from "./NetflixRow";
+import NetflixHeader from "./header/NetflixHeader";
 
 const NetflixById = () => {
   const { id } = useParams();
@@ -20,6 +20,13 @@ const NetflixById = () => {
         media={mediaType}
         sizeImage="w500"
         title={`${mediaType === "movie" ? "Films" : "Séries"} populaires `}
+      />
+      <NetflixRow
+        category="top_rated"
+        formatImage="large"
+        media={mediaType}
+        sizeImage="w500"
+        title={`${mediaType === "movie" ? "Films" : "Séries"} les mieux notés `}
       />
     </div>
   );
