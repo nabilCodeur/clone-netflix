@@ -9,7 +9,7 @@ const SignUpBanner = () => {
       <img src={authentificationLogo} alt="logo" className='size-14' />
       </Link>
       <nav>
-        <Link to="login" className=' hover:underline hover:underline-offset-2'>Sign In</Link>
+        <Link to="/login" className=' hover:underline hover:underline-offset-2'>Sign In</Link>
       </nav>
     </header>
     </div>
