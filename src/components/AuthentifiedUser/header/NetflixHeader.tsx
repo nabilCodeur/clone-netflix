@@ -19,7 +19,7 @@ const NetflixHeader = ({
     bannerMediaSource,
   } = useHeader(mediaType, id);
 
-  if (isError) return <p>{error.message}</p>;
+  if (isError) return <p>{error?.message}</p>;
 
   return (
     <>
