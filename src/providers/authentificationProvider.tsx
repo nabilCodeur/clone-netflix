@@ -1,16 +1,22 @@
-import useAuthentification from '@/hooks/useAuthentification'
-import React from 'react'
+import useFirebaseAuthentification from "@/hooks/useFirebaseAuthentification";
+import React from "react";
 
+export const Authentification = React.createContext({});
 
-export const Authentification= React.createContext({})
-
-const AuthentificationProvider = ({children}:{children:React.ReactNode}) => {
-  const {user,loginUser,logoutUser,errorMessage,signUpUser} = useAuthentification()
+const AuthentificationProvider = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => {
+  const { user, loginUser, logoutUser, errorMessage, signUpUser } =
+    useFirebaseAuthentification();
   return (
-    <Authentification.Provider value={{user,loginUser,logoutUser,errorMessage,signUpUser}}>
+    <Authentification.Provider
+      value={{ user, loginUser, logoutUser, errorMessage, signUpUser }}
+    >
       {children}
     </Authentification.Provider>
-  )
-}
+  );
+};
 
-export default AuthentificationProvider
+export default AuthentificationProvider;

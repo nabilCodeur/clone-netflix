@@ -1,4 +1,4 @@
-import useAuthentification from "@/hooks/useAuthentification";
+import useFirebaseAuthentification from "@/hooks/useFirebaseAuthentification";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -10,26 +10,43 @@ const FormSignup = () => {
   });
 
   type Inputs = z.infer<typeof InputsSchema>;
-  const { register, handleSubmit , formState:{errors} } = useForm<Inputs>({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<Inputs>({
     resolver: zodResolver(InputsSchema),
   });
-  const authentification = useAuthentification()
-
+  const authentification = useFirebaseAuthentification();
 
   const signupUser = ({ email, password }: Inputs) => {
-    authentification.signUpUser(email,password)
-   
+    authentification.signUpUser(email, password);
   };
 
   return (
-    <form className="flex flex-col gap-4 mt-4" onSubmit={handleSubmit(signupUser)}>
-      <input {...register("email")} placeholder="email" className="p-4 border-2 border-gray-400"/>
+    <form
+      className="flex flex-col gap-4 mt-4"
+      onSubmit={handleSubmit(signupUser)}
+    >
+      <input
+        {...register("email")}
+        placeholder="email"
+        className="p-4 border-2 border-gray-400"
+      />
       {errors.email?.message && <p>{errors.email.message}</p>}
 
-      <input {...register("password")} placeholder="Enter your password" className="p-4 border-2 border-gray-400"/>
+      <input
+        {...register("password")}
+        placeholder="Enter your password"
+        className="p-4 border-2 border-gray-400"
+      />
       {errors.password?.message && <p>{errors.password.message}</p>}
       {authentification.errorMessage && <p>{authentification.errorMessage}</p>}
-      <input type="submit" className="p-3 text-white bg-red-700 rounded-sm" value={"S'inscrire"} />
+      <input
+        type="submit"
+        className="p-3 text-white bg-red-700 rounded-sm"
+        value={"S'inscrire"}
+      />
     </form>
   );
 };
