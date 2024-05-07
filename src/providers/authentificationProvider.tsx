@@ -1,7 +1,18 @@
 import useFirebaseAuthentification from "@/hooks/useFirebaseAuthentification";
+import { User } from "firebase/auth";
 import React from "react";
 
-export const Authentification = React.createContext({});
+
+
+export type AuthentificationProvider = {
+  user: User | null;
+  loginUser: (email: string, password: string) => void;
+  signUpUser: (email: string, password: string) => void;
+  errorMessage: string | null;
+  logoutUser: () => void;
+}
+
+export const Authentification = React.createContext<AuthentificationProvider|null>(null);
 
 const AuthentificationProvider = ({
   children,
@@ -10,6 +21,8 @@ const AuthentificationProvider = ({
 }) => {
   const { user, loginUser, logoutUser, errorMessage, signUpUser } =
     useFirebaseAuthentification();
+
+
   return (
     <Authentification.Provider
       value={{ user, loginUser, logoutUser, errorMessage, signUpUser }}

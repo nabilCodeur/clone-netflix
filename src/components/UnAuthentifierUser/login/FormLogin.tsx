@@ -1,4 +1,4 @@
-import { Authentification } from "@/providers/authentificationProvider";
+import { Authentification, AuthentificationProvider } from "@/providers/authentificationProvider";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
@@ -18,7 +18,7 @@ const FormLogin = () => {
     formState: { errors },
   } = useForm<Inputs>({ resolver: zodResolver(InputsSchema) });
 
-  const {user , loginUser , errorMessage} = useContext(Authentification)
+  const {user , loginUser , errorMessage} = useContext(Authentification) as AuthentificationProvider
 
 
   const login = ({ email, password }:Inputs) => {

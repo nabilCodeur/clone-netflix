@@ -1,5 +1,3 @@
-import React from 'react'
-import SignUpBanner from '../banner/SignUpBanner'
 import FormSignup from './FormSignUp'
 
 const SignupFrame = () => {

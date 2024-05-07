@@ -4,10 +4,9 @@ import {
   User,
   browserSessionPersistence,
   createUserWithEmailAndPassword,
-  onAuthStateChanged,
   setPersistence,
   signInWithEmailAndPassword,
-  signOut,
+  signOut
 } from "firebase/auth";
 import React from "react";
 import { useNavigate } from "react-router-dom";
@@ -17,15 +16,6 @@ const useFirebaseAuthentification = () => {
   const [errorMessage, setErrorMessage] = React.useState<string | null>(null);
   const navigate = useNavigate();
 
-  // onAuthStateChanged(authentification,(currentUser) => {
-  //   if(currentUser){
-  //     setUser(currentUser)
-  //   }
-  //   else {
-  //     setUser(null)
-  //   }
-  // }
-  // )
 
   const signUpUser = (email: string, password: string) => {
     createUserWithEmailAndPassword(authentification, email, password)

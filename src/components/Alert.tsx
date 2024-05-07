@@ -1,4 +1,3 @@
-import React from 'react'
 
 const Alert = ({title,message}:{title:string,message?:string}) => {
   return (

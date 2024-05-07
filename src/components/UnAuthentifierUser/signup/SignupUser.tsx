@@ -1,5 +1,4 @@
 import SignUpBanner from "../banner/SignUpBanner";
-import FormSignup from "./FormSignUp";
 import SignupFrame from "./SignupFrame";
 
 const SignupUser = () => {

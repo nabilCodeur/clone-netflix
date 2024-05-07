@@ -1,6 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
 
-import React from "react";
 import { Link } from "react-router-dom";
 import {
   CategoryEndpointApiList,
@@ -11,9 +10,6 @@ import { buildImageUrl } from "../../utils/buildImageUrl";
 import { clientApiList } from "../../utils/clientApiList";
 import NetflixRowSkeleton from "../loading/NetflixRowSkeleton";
 import { Carousel, CarouselContent, CarouselItem } from "../ui/carousel";
-import { useToast } from "../ui/use-toast";
-import { Button } from "../ui/button";
-import { Toast } from "@radix-ui/react-toast";
 
 
 const NetflixRow = ({
