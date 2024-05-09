@@ -5,8 +5,8 @@ import { Authentification, AuthentificationProvider } from "./providers/authenti
 
 const NetflixApp = () => {
 
-  const {user} = useContext(Authentification) as AuthentificationProvider;
-  console.log(user)
+  const {user} = useContext(Authentification) as AuthentificationProvider ;
+
 
   
   return (

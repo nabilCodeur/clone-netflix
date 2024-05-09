@@ -1,6 +1,7 @@
 import { CategoryEndpointApi, MediaEndpointApi } from "../types";
 import { MediaSchema } from "./clientApiList";
 
+
 export const clientApiMedia = async (
   type: MediaEndpointApi,
   parameter: CategoryEndpointApi | number

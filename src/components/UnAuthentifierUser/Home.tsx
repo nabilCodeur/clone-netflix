@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Button } from "../ui/button";
 import Banner from "./banner/HomeBanner";
 const Home = () => {
+
   return (
     <div
       style={{
@@ -19,7 +20,7 @@ const Home = () => {
           Unlimited movies, TV shows, and more
         </h1>
         <br />
-        <h2>Watch anywhere. Cancer anytime.</h2>
+        <h2>Watch anywhere. Cancel anytime.</h2>
         <br />
         <Button variant={"destructive"}>
           <Link to="/login">Get Started</Link>

@@ -1,5 +1,5 @@
-import NetflixHeader from "./header/NetflixHeader";
 import NetflixRow from "./NetflixRow";
+import NetflixHeader from "./header/NetflixHeader";
 
 const Home = () => {
   return (

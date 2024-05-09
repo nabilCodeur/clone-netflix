@@ -10,7 +10,7 @@ const UnAuthentifierUser = () => {
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<LoginUser />} />
       <Route path="/sign-up" element={<SignupUser />} />
-      <Route path="/*" element={<PageNotFound />} />
+      <Route path="*" element={<PageNotFound />} />
     </Routes>
   );
 };

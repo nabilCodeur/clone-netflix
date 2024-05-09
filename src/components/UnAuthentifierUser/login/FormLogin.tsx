@@ -51,7 +51,7 @@ const FormLogin = () => {
       {errors.password?.message && <p>{errors.password?.message}</p>}
       <input
         type="submit"
-        className="p-2 bg-red-600 rounded-md "
+        className="p-2 bg-red-600 rounded-md hover:cursor-pointer "
         value={"Sign In"}
       />
       {errorMessage && <p>{errorMessage}</p>}
