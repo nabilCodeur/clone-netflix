@@ -1,5 +1,6 @@
+import authentification from "@/firebase/authentification";
 import useFirebaseAuthentification from "@/hooks/useFirebaseAuthentification";
-import { User } from "firebase/auth";
+import { User, browserSessionPersistence } from "firebase/auth";
 import React from "react";
 
 
@@ -21,6 +22,19 @@ const AuthentificationProvider = ({
 }) => {
   const { user, loginUser, logoutUser, errorMessage, signUpUser } =
     useFirebaseAuthentification();
+
+    React.useEffect(() => {
+      const setAuthPersistance = async()=>{
+        try{
+           await authentification.setPersistence(browserSessionPersistence)
+        }
+        catch(error){
+          console.error("Erreur lors de la configuration de la persistance de l'authentification")
+        }
+      }
+      setAuthPersistance()
+    }
+    )
 
 
   return (

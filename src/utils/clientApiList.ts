@@ -4,10 +4,11 @@ import {
   MediaEndpointApi
 } from "../types";
 
-export const MediaSchema = z.object({
+export const 
+MediaSchema = z.object({
   id: z.number(),
-  backdrop_path: z.string(),
-  poster_path: z.string(),
+  backdrop_path: z.string().nullable().optional(),
+  poster_path: z.string().optional(),
   overview: z.string(),
   title: z.string().optional(),
   name: z.string().optional(),
@@ -29,7 +30,8 @@ export const clientApiList = async (
   const data = await fetch(urlFetch)
     .then((res) => res.json())
     .then((data) => data.results)
-    .then((data) => ListMediaSchema.parse(data));
+    .then((data) => ListMediaSchema.parse(data))
+    .then(data=>data.filter(item=>item.backdrop_path!=null || item.poster_path!==null));
 
   return data;
 };

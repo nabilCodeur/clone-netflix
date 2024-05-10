@@ -4,14 +4,14 @@ import NetflixHeader from "./header/NetflixHeader";
 const Home = () => {
   return (
     <div>
-      <NetflixHeader />
-      <NetflixRow
+      <NetflixHeader  />
+      {/* <NetflixRow
         category="popular"
         sizeImage="w500"
         media="movie"
         title="Films populaires"
         formatImage="large"
-      />
+      /> */}
       <NetflixRow
         category="top_rated"
         sizeImage="w500"
@@ -19,13 +19,14 @@ const Home = () => {
         title="Séries les mieux notées"
         formatImage="poster"
       />
-      <NetflixRow
+     
+      {/* <NetflixRow
         category="top_rated"
         sizeImage="w500"
         media="movie"
         title="Films les mieux notés"
         formatImage="poster"
-      />
+      />  */}
     </div>
   );
 };

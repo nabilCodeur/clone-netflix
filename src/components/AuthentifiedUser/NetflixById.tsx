@@ -14,7 +14,7 @@ const NetflixById = () => {
   return (
     <div>
       <NetflixHeader id={Number(id)} mediaType={mediaType} />
-      <NetflixRow
+      {/* <NetflixRow
         category="popular"
         formatImage="large"
         media={mediaType}
@@ -27,7 +27,7 @@ const NetflixById = () => {
         media={mediaType}
         sizeImage="w500"
         title={`${mediaType === "movie" ? "Films" : "Séries"} les mieux notés `}
-      />
+      /> */}
     </div>
   );
 };

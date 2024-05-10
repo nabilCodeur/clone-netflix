@@ -20,6 +20,8 @@ const useFirebaseAuthentification = () => {
   const navigate = useNavigate();
   const { createUserDocument } = useFireStore();
 
+
+
   const signUpUser = (email: string, password: string) => {
     createUserWithEmailAndPassword(authentification, email, password)
       .then((userCredential) => {

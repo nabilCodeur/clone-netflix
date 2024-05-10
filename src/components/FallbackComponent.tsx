@@ -3,12 +3,6 @@ import { Link
 
 
 const FallbackComponent = ({error , resetErrorBoundary}:{error , resetErrorBoundary}) => {
-  console.error(error?.message)
-  console.error("faalback component")
-
-
-
-
 
 
   return (

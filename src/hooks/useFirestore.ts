@@ -10,6 +10,7 @@ const BookmarkShema = z.object({
 })
 
 export default function useFirestore() {
+  
   const fireStoreUpdateDocument = async (
     collectionName: string | null | undefined,
     documentId: string | null | undefined,
@@ -66,10 +67,19 @@ export default function useFirestore() {
     }
   }
 
-  // const addBookmarkFirestore = async(userId:string,mediaType:MediaEndpointApi , newId:number)=>{
-  //   const bookmarks = await readBookmarks(userId).then(bookmark=>bookmark[bookMarksTypeFirestore])
-  // }
+  const addMediaIdBookmarkFirestore = async(userId:string|undefined,mediaType:MediaEndpointApi | undefined, newBookmarkId:number|undefined)=>{
+    if (!userId || !newBookmarkId || !mediaType) return
+    const docRef = doc(database,"users",userId)
+    const bookMarksTypeFirestore = mediaType==="movie"?"bookmarksMovieIds":"bookmarksTvIds"
+    const bookmarks = await readBookmarks(mediaType,userId)
+    if (!bookmarks) return null
+    if( bookmarks.includes(newBookmarkId)) return null
+    const updatedData = [...bookmarks,newBookmarkId]
+    await updateDoc(docRef ,{toto:"test"} )
 
-  return { createUserDocument , readBookmarks , fireStoreUpdateDocument};
+  }
+
+
+  return { createUserDocument , readBookmarks , fireStoreUpdateDocument , addMediaIdBookmarkFirestore };
 }
 

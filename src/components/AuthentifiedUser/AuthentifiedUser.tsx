@@ -1,10 +1,11 @@
 import { Route, Routes } from 'react-router-dom'
 import Home from './Home'
 import NetfixSeries from './NetfixSeries'
-import NetflixBookmarks from './bookmarks/NetflixBookmarks'
+// import NetflixBookmarks from './bookmarks/NetflixBookmarks'
 import NetflixById from './NetflixById'
 import NetflixMovies from './NetflixMovies'
 import PageNotFound from '../PageNotFound'
+import NetflixBookmarks from './bookmarks/NetflixBookmarks'
 
 const AuthentifiedUser = () => {
 
@@ -16,7 +17,7 @@ const AuthentifiedUser = () => {
     <Route path="/tv/:id" element={<NetflixById />} />
     <Route path="/tv" element={<NetfixSeries />} />
     <Route path="/bookmarks" element={<NetflixBookmarks />} />
-    <Route path="/*" element={<PageNotFound/>} />
+    <Route path="*" element={<PageNotFound/>} />
   </Routes>
   )
 }

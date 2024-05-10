@@ -4,7 +4,7 @@ import NetflixRow from "./NetflixRow";
 const NetflixMovies = () => {
   return (
     <div>
-      <NetflixHeader mediaType="movie" />
+      <NetflixHeader mediaType="movie" id={843527} />
       <NetflixRow
         category="popular"
         media="movie"

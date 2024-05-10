@@ -9,13 +9,13 @@ const NetflixRow = ({
   bookmarksIds,
 }: {
   typeMedia: MediaEndpointApi;
-  bookmarksIds: number[] | undefined;
+  bookmarksIds: number[] ;
 }) => {
 
 
   
   const queries = useQueries({
-    queries: bookmarksIds?.map((id) => {
+    queries: bookmarksIds.map((id) => {
       return {
         queryKey: [typeMedia, id],
         queryFn: () => clientApiMedia(typeMedia, id),

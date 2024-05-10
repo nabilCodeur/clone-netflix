@@ -60,7 +60,7 @@ const NetflixRow = ({
                 const fetchImageFormat = buildImageUrl(
                   sizeImage,
                   formatImage === "large"
-                    ? movie.backdrop_path
+                    ? movie.poster_path
                     : movie.poster_path
                 );
                 return (

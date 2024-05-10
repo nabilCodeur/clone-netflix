@@ -1,5 +1,5 @@
 import { ImageEndpointApi } from "../types";
 
-export const buildImageUrl = (format: ImageEndpointApi, path?: string) => {
-  return `${import.meta.env.VITE_IMAGE_URL}/${format}/${path}`;
+export const buildImageUrl = (format: ImageEndpointApi, path?: string|null) => {
+  return `${import.meta.env.VITE_IMAGE_URL}/${format}/${path??""}`;
 };
