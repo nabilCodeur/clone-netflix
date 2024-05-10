@@ -1,19 +1,20 @@
 import { MediaEndpointApi } from "@/types";
 import { z } from "zod";
 import useFirestore from "./useFirestore";
+import React from "react";
 
 const BookmarkShema = z.object({
   bookmarksMovieIds: z.array(z.number()),
   bookmarksTvIds: z.array(z.number()),
 });
-const useBookmarkFirestore = (userId:string | null | undefined) => {
+const useBookmarkFirestore = (userId: string | null | undefined , typeMedia:MediaEndpointApi, idMedia?:number | null) => {
+
+
+  const [isBookmarkInList, setIsBookmarkInList] = React.useState(false)
   const { readUserDocument, fireStoreUpdateDocument } = useFirestore("users");
-
-  const readBookmarks = async (
   
-    typeMedia: MediaEndpointApi
-  ) => {
 
+  const readBookmarks = async () => {
     const bookMarksTypeFirestore =
       typeMedia === "movie" ? "bookmarksMovieIds" : "bookmarksTvIds";
     const ERROR_MESSAGE = "Impossible de lire les favoris";
@@ -23,34 +24,46 @@ const useBookmarkFirestore = (userId:string | null | undefined) => {
     return bookmarks;
   };
 
-  const addBookmark = async (
-    typeMedia: MediaEndpointApi,
-    newId?: number,
-   
-  ) => {
+  const addBookmark = async () => {
+    if (!idMedia) return;
 
-    if (!newId) return
-
-    const initialBookmarks = await readBookmarks(typeMedia)
-    if (initialBookmarks.includes(newId)) return
+    const initialBookmarks = await readBookmarks();
+    if (initialBookmarks.includes(idMedia)) return;
 
     const bookMarksTypeFirestore =
       typeMedia === "movie" ? "bookmarksMovieIds" : "bookmarksTvIds";
 
-    if (!newId) throw new Error("Impossible d'ajouter le favori");
+   
     await fireStoreUpdateDocument(userId ?? "", {
-      [bookMarksTypeFirestore]: [...initialBookmarks,newId],
+      [bookMarksTypeFirestore]: [...initialBookmarks, idMedia],
     });
+    await checkMediaInFirestoreBookmark()
   };
 
-  const isMediaInFirestoreBookmark = async (mediaId:number,typeMedia:MediaEndpointApi) => {
-    const initialBookmarks = await readBookmarks(typeMedia)
-    return initialBookmarks.includes(mediaId)
-    
-  }
-  
+  const removeBookmarkById = async () => {
+    if (!idMedia) return
+    const bookMarksTypeFirestore =
+      typeMedia === "movie" ? "bookmarksMovieIds" : "bookmarksTvIds";
+    const bookmarks = await readBookmarks();
+    if (!bookmarks.includes(idMedia)) return;
 
-  return { readBookmarks, addBookmark , isMediaInFirestoreBookmark };
+   const updatedBookmarks = bookmarks.filter(bookmardId=>bookmardId!==idMedia)
+
+    await fireStoreUpdateDocument(userId ?? "", {
+      [bookMarksTypeFirestore]: updatedBookmarks,
+    });
+    await checkMediaInFirestoreBookmark()
+  };
+
+  const checkMediaInFirestoreBookmark = async (
+   
+  ) => {
+    if (!idMedia) return
+    const initialBookmarks = await readBookmarks();
+    setIsBookmarkInList(initialBookmarks.includes(idMedia));
+  };
+
+  return { readBookmarks, addBookmark,  checkMediaInFirestoreBookmark , removeBookmarkById , isBookmarkInList };
 };
 
 export default useBookmarkFirestore;

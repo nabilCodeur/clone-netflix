@@ -13,7 +13,7 @@ const NetflixCategory = ({ typeMedia }: { typeMedia: MediaEndpointApi }) => {
   const authentification = useContext(
     Authentification
   ) as AuthentificationProvider;
-  const { readBookmarks } = useBookmarkFirestore(authentification.user?.uid);
+  const { readBookmarks } = useBookmarkFirestore(authentification.user?.uid, typeMedia);
 
   const {
     data: bookmarksIds,
@@ -21,7 +21,7 @@ const NetflixCategory = ({ typeMedia }: { typeMedia: MediaEndpointApi }) => {
     isLoading,
   } = useQuery({
     queryKey: [`bookmarks/${typeMedia}`],
-    queryFn: () => readBookmarks( typeMedia,),
+    queryFn: () => readBookmarks(),
   });
 
   if (isError) return <p>Une erreur s'est produite</p>;

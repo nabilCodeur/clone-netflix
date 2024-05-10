@@ -1,12 +1,11 @@
-import useFirestore from "@/hooks/useFirestore";
+import useBookmarkFirestore from "@/hooks/useBookmarkFirestore";
 import { Authentification, AuthentificationProvider } from "@/providers/authentificationProvider";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import useHeader from "../../../hooks/useHeader";
 import { MediaEndpointApi } from "../../../types";
 import HeaderSkeleton from "../../loading/HeaderSkeleton";
 import { Button } from "../../ui/button";
 import TopHeader from "./TopHeader";
-import useBookmarkFirestore from "@/hooks/useBookmarkFirestore";
 
 const NetflixHeader = ({
   mediaType,
@@ -27,30 +26,25 @@ const NetflixHeader = ({
 
   const {user} =  useContext(Authentification) as AuthentificationProvider
 
-  const [isBookmarkInList, setIsBookmarkInList] = useState(false)
- 
 
-  const {addBookmark ,  isMediaInFirestoreBookmark}=useBookmarkFirestore(user?.uid)
-
-  const checkMediaInBookmarks = async()=>{
-    const result = await isMediaInFirestoreBookmark(id??headerId,mediaHeader)
-   setIsBookmarkInList(result)
-  }
+  const {addBookmark ,checkMediaInFirestoreBookmark, removeBookmarkById, isBookmarkInList}=useBookmarkFirestore(user?.uid , mediaType??mediaHeader,id??headerId)
+  
 
   const handleBookmark = async ()=>{
-    await addBookmark(mediaHeader, id??headerId )
-    await checkMediaInBookmarks()
-    
+    await checkMediaInFirestoreBookmark()
+    if (isBookmarkInList){
+      await removeBookmarkById()
+    }
+    else {
+      await addBookmark()
+    }
     
   }
 
   useEffect(() => {
-
-      checkMediaInBookmarks()
-    
-  },[ headerId , id ]
+    checkMediaInFirestoreBookmark()
+  },[checkMediaInFirestoreBookmark]
   )
-
 
   if (isError) return <p>{error?.message}</p>;
 
@@ -63,7 +57,6 @@ const NetflixHeader = ({
         <div
           style={{
             backgroundImage: `url(${bannerMediaSource}`,
-            // backgroundPosition: "center",
             backgroundClip: "border-box",
             backgroundSize: "1600px",
             backgroundRepeat: "no-repeat",
@@ -79,8 +72,8 @@ const NetflixHeader = ({
               {media?.overview ?? "Résumé indisponible"}
             </p>
             <div className="mt-4 space-x-2 text-end">
-              <Button className="uppercase">Lecture</Button>
-              <Button className="uppercase bg-red-600" onClick={handleBookmark} >
+              <Button className="uppercase bg-red-600">Lecture</Button>
+              <Button className="uppercase " onClick={handleBookmark} >
                 {isBookmarkInList?"Supprimer des favoris":"Ajouter à mes favoris"}
               </Button>
             </div>
