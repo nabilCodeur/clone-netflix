@@ -6,6 +6,7 @@ import { MediaEndpointApi } from "../../../types";
 import HeaderSkeleton from "../../loading/HeaderSkeleton";
 import { Button } from "../../ui/button";
 import TopHeader from "./TopHeader";
+import useBookmarkFirestore from "@/hooks/useBookmarkFirestore";
 
 const NetflixHeader = ({
   mediaType,
@@ -20,15 +21,17 @@ const NetflixHeader = ({
     isError,
     isLoading,
     bannerMediaSource,
+    mediaHeader,
+    id:headerId
   } = useHeader(mediaType, id);
 
   const {user} =  useContext(Authentification) as AuthentificationProvider
  
 
-  const {addMediaIdBookmarkFirestore}=useFirestore()
+  const {addBookmark}=useBookmarkFirestore()
 
-  const handleBookmark = ()=>{
-    addMediaIdBookmarkFirestore(user?.uid,mediaType,id)
+  const handleBookmark = async ()=>{
+    await addBookmark(mediaHeader,media?.id,user?.uid)
   }
 
   if (isError) return <p>{error?.message}</p>;

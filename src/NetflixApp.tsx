@@ -6,12 +6,12 @@ import { Authentification, AuthentificationProvider } from "./providers/authenti
 const NetflixApp = () => {
  
 
-  const {user}=useContext(Authentification) as AuthentificationProvider
+  const authentification=useContext(Authentification) as AuthentificationProvider
 
 
   return (
     <div className="h-full text-white bg-black">
-      {user ? <AuthentifiedUser /> : <UnAuthentifierUser />}
+      {authentification?.user? <AuthentifiedUser /> : <UnAuthentifierUser />}
     </div>
   );
 };
