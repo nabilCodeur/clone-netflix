@@ -1,6 +1,6 @@
 import useFirestore from "@/hooks/useFirestore";
 import { Authentification, AuthentificationProvider } from "@/providers/authentificationProvider";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import useHeader from "../../../hooks/useHeader";
 import { MediaEndpointApi } from "../../../types";
 import HeaderSkeleton from "../../loading/HeaderSkeleton";
@@ -26,13 +26,31 @@ const NetflixHeader = ({
   } = useHeader(mediaType, id);
 
   const {user} =  useContext(Authentification) as AuthentificationProvider
+
+  const [isBookmarkInList, setIsBookmarkInList] = useState(false)
  
 
-  const {addBookmark}=useBookmarkFirestore()
+  const {addBookmark ,  isMediaInFirestoreBookmark}=useBookmarkFirestore(user?.uid)
+
+  const checkMediaInBookmarks = async()=>{
+    const result = await isMediaInFirestoreBookmark(id??headerId,mediaHeader)
+   setIsBookmarkInList(result)
+  }
 
   const handleBookmark = async ()=>{
-    await addBookmark(mediaHeader,media?.id,user?.uid)
+    await addBookmark(mediaHeader, id??headerId )
+    await checkMediaInBookmarks()
+    
+    
   }
+
+  useEffect(() => {
+
+      checkMediaInBookmarks()
+    
+  },[ headerId , id ]
+  )
+
 
   if (isError) return <p>{error?.message}</p>;
 
@@ -63,7 +81,7 @@ const NetflixHeader = ({
             <div className="mt-4 space-x-2 text-end">
               <Button className="uppercase">Lecture</Button>
               <Button className="uppercase bg-red-600" onClick={handleBookmark} >
-                Ajouter à la liste
+                {isBookmarkInList?"Supprimer des favoris":"Ajouter à mes favoris"}
               </Button>
             </div>
           </div>

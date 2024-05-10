@@ -1,13 +1,10 @@
 import { FirebaseError } from "firebase/app";
 import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
-import { z } from "zod";
+
 import database from "../firebase/database";
 
 
-const BookmarkShema = z.object({
-  bookmarksMovieIds:z.array(z.number()),
-  bookmarksTvIds:z.array(z.number())
-})
+
 
 export default function useFirestore(collectionName:string) {
   
