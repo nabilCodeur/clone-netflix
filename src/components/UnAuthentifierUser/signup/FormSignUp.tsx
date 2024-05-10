@@ -1,4 +1,3 @@
-import useBookmark from "@/hooks/useBookmark";
 import { Authentification, AuthentificationProvider } from "@/providers/authentificationProvider";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useContext } from "react";

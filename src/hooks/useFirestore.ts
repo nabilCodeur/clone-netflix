@@ -70,11 +70,11 @@ export default function useFirestore() {
   const addMediaIdBookmarkFirestore = async(userId:string|undefined,mediaType:MediaEndpointApi | undefined, newBookmarkId:number|undefined)=>{
     if (!userId || !newBookmarkId || !mediaType) return
     const docRef = doc(database,"users",userId)
-    const bookMarksTypeFirestore = mediaType==="movie"?"bookmarksMovieIds":"bookmarksTvIds"
+    // const bookMarksTypeFirestore = mediaType==="movie"?"bookmarksMovieIds":"bookmarksTvIds"
     const bookmarks = await readBookmarks(mediaType,userId)
     if (!bookmarks) return null
     if( bookmarks.includes(newBookmarkId)) return null
-    const updatedData = [...bookmarks,newBookmarkId]
+    // const updatedData = [...bookmarks,newBookmarkId]
     await updateDoc(docRef ,{toto:"test"} )
 
   }

@@ -7,7 +7,7 @@ function App() {
   return (
     <QueryProvider>
       <AuthentificationProvider>
-      <NetflixApp/>
+        <NetflixApp />
       </AuthentificationProvider>
     </QueryProvider>
   );

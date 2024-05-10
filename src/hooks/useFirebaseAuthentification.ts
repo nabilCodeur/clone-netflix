@@ -4,6 +4,7 @@ import {
   User,
   browserSessionPersistence,
   createUserWithEmailAndPassword,
+  onAuthStateChanged,
   setPersistence,
   signInWithEmailAndPassword,
   signOut,
@@ -38,6 +39,18 @@ const useFirebaseAuthentification = () => {
         setErrorMessage(errorMessage);
       });
   };
+
+  React.useEffect(() => {
+    onAuthStateChanged(authentification,user=>{
+      if (user){
+        setUser(user)
+      }
+      else {
+        setUser(null)
+      }
+    })
+  },[]
+  )
 
   const loginUser = (email: string, password: string) => {
     setPersistence(authentification, browserSessionPersistence)

@@ -4,14 +4,14 @@ import UnAuthentifierUser from "./components/UnAuthentifierUser/UnAuthentifierUs
 import { Authentification, AuthentificationProvider } from "./providers/authentificationProvider";
 
 const NetflixApp = () => {
+ 
 
-  const {user} = useContext(Authentification) as AuthentificationProvider ;
+  const {user}=useContext(Authentification) as AuthentificationProvider
 
 
-  
   return (
     <div className="h-full text-white bg-black">
-      {user? <AuthentifiedUser /> : <UnAuthentifierUser />}
+      {user ? <AuthentifiedUser /> : <UnAuthentifierUser />}
     </div>
   );
 };
