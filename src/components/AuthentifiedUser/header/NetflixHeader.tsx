@@ -7,6 +7,7 @@ import HeaderSkeleton from "../../loading/HeaderSkeleton";
 import { Button } from "../../ui/button";
 import TopHeader from "./TopHeader";
 
+//TODO:afficher un message lorsqu'un film est ajouté ou supprimé en favori
 const NetflixHeader = ({
   mediaType,
   id,
