@@ -19,7 +19,8 @@ const useFirebaseAuthentification = () => {
   const [errorMessage, setErrorMessage] = React.useState<string | null>(null);
 
   const navigate = useNavigate();
-  const { createUserDocument } = useFireStore();
+  
+  const { createUserDocument } = useFireStore("users");
 
 
 

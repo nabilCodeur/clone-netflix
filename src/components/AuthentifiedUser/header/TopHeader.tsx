@@ -16,7 +16,7 @@ const TopHeader = () => {
         </Link>
        <Navigation/>
       </div>
-      <div>
+      <div className="flex items-center">
 
         <SearchMedia/>
         <Button onClick={logoutUser}>Se déconnecter</Button>

@@ -24,7 +24,7 @@ const useHeader = (typeMedia?: MediaEndpointApi, id?: number) => {
 
   const bannerMediaSource = buildImageUrl("original", data?.backdrop_path);
 
-  return { data, error, isError, isLoading, bannerMediaSource, id };
+  return { data, error, isError, isLoading, bannerMediaSource, id , mediaHeader};
 };
 
 export default useHeader;
