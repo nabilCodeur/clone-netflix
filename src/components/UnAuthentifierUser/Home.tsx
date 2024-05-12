@@ -1,6 +1,7 @@
 import backgroundAuthentification from "@/assets/background-authentification.jpg";
 import { Link } from "react-router-dom";
 import { Button } from "../ui/button";
+import netflixLogo from "@/assets/netflix-n.png"
 import Banner from "./banner/HomeBanner";
 const Home = () => {
 
@@ -16,7 +17,7 @@ const Home = () => {
       <Banner />
 
       <div className="flex flex-col items-center justify-center ">
-        <h1 className="text-3xl font-extrabold">
+        <h1 className="text-3xl font-extrabold text-center">
           Unlimited movies, TV shows, and more
         </h1>
         <br />
