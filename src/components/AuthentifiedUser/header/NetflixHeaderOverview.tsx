@@ -27,19 +27,14 @@ const NetflixHeaderOverview = ({media,mediaHeader}:{media:Media,mediaHeader:Medi
   )
   
   return (
-    <div className="w-1/3 p-5 px-4 ml-3 space-y-2 bg-black/70 ">
-    <h1 className="text-2xl uppercase">
-      {media?.title ?? media?.name}
+    <div className="absolute px-4 mt-4 ml-3 space-y-2 text-red-100 bottom-[-10px] sm:w-1/2  sm:bottom-3/4 sm:text-2xl translate-y-full">
+    <h1 className="text-2xl text-white uppercase">
+      {media?.name ? media?.title :"Titre inconnu"}
     </h1>
-    <p className="font-bold text-justify indent-4 line-clamp-6">
+    <p className="font-bold line-clamp-4">
       {media?.overview ?? "Résumé indisponible"}
     </p>
-    <div className="mt-4 space-x-2 text-end">
-      <Button className="uppercase bg-red-600">Lecture</Button>
-      <Button className="uppercase " onClick={handleBookmark} >
-        {isBookmarkInList?"Supprimer des favoris":"Ajouter à mes favoris"}
-      </Button>
-    </div>
+
     </div>
   )
 }

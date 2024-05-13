@@ -9,7 +9,7 @@ import React from "react";
 const TopHeader = () => {
   const {logoutUser}=React.useContext(Authentification) as AuthentificationProvider
   return (
-    <header className="flex items-center justify-between px-2 bg-black">
+    <header className="flex items-center justify-between px-2 ">
       <div className="flex items-center space-x-8">
         <Link to={"/"}>
           <img src={netflixLogo} alt="logo" className="object-contain w-16" />
@@ -18,7 +18,7 @@ const TopHeader = () => {
       </div>
       <div className="flex items-center">
 
-        <SearchMedia/>
+        {/* <SearchMedia/> */}
         <Button onClick={logoutUser}>Se déconnecter</Button>
       </div>
     </header>
