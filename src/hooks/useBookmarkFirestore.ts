@@ -63,7 +63,17 @@ const useBookmarkFirestore = (userId: string | null | undefined , typeMedia:Medi
     setIsBookmarkInList(initialBookmarks.includes(idMedia));
   };
 
-  return { readBookmarks, addBookmark,  checkMediaInFirestoreBookmark , removeBookmarkById , isBookmarkInList };
+  const handleBookmark = async ()=>{
+    await checkMediaInFirestoreBookmark()
+    if (isBookmarkInList){
+      await removeBookmarkById()
+    }
+    else {
+      await addBookmark()
+    }
+  }
+
+  return { readBookmarks, addBookmark,  checkMediaInFirestoreBookmark , removeBookmarkById , isBookmarkInList , handleBookmark };
 };
 
 export default useBookmarkFirestore;

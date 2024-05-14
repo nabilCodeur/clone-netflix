@@ -5,7 +5,7 @@ const Home = () => {
   return (
     <div className="h-full mb-10">
       <NetflixHeader  />
-      {/* <NetflixRow
+      <NetflixRow
         category="popular"
         sizeImage="w500"
         media="movie"
@@ -14,7 +14,7 @@ const Home = () => {
       />
     
      
-      <NetflixRow
+      {/* <NetflixRow
         category="top_rated"
         sizeImage="w500"
         media="movie"
