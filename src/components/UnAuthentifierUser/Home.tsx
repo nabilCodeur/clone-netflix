@@ -1,10 +1,8 @@
 import backgroundAuthentification from "@/assets/background-authentification.jpg";
 import { Link } from "react-router-dom";
 import { Button } from "../ui/button";
-import netflixLogo from "@/assets/netflix-n.png"
 import Banner from "./banner/HomeBanner";
 const Home = () => {
-
   return (
     <div
       style={{

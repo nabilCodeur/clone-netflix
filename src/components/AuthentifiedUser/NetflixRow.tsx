@@ -43,6 +43,7 @@ const NetflixRow = ({
 
   return (
     <div className="py-4 pl-3">
+   
       <h1 className="text-2xl font-bold uppercase">{title}</h1>
  
 
@@ -64,7 +65,7 @@ const NetflixRow = ({
                     : movie.poster_path
                 );
                 return (
-                  <CarouselItem key={movie.id} className="pl-2 basis-1/3">
+                  <CarouselItem key={movie?.id} className="pl-2 basis-1/3">
                     <Link to={`/${media}/${movie.id}`} key={movie.id}>
                       <img
                         src={fetchImageFormat}
