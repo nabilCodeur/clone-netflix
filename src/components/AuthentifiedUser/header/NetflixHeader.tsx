@@ -65,7 +65,7 @@ const NetflixHeader = ({
               backgroundImage: `linear-gradient(to right,black,transparent),url(${bannerMediaSource})`,
               backgroundBlendMode: "multiply",
             }}
-            className={`  bg-cover h-[50vh]  sm:h-[60vh] bg-center  relative w-full `}
+            className={`bg-cover h-[50vh]  sm:h-[60vh] bg-center  relative w-full `}
           >
             <div className="absolute space-x-2 text-end top-3/4 left-4">
               <Button className="uppercase bg-red-600">Lecture</Button>

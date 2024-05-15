@@ -14,7 +14,7 @@ const Home = () => {
       />
     
      
-      {/* <NetflixRow
+      <NetflixRow
         category="top_rated"
         sizeImage="w500"
         media="movie"
@@ -27,7 +27,7 @@ const Home = () => {
         media="tv"
         title="Séries les mieux notées"
         formatImage="poster"
-      /> */}
+      />
     </div>
   );
 };
