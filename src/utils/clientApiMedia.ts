@@ -8,6 +8,8 @@ export const clientApiMedia = async (
 ) => {
 
 
+
+
   const endpoint = `${type}/${parameter}`;
   const urlFetch = `${
     import.meta.env.VITE_API_MOVIE_DB_URL

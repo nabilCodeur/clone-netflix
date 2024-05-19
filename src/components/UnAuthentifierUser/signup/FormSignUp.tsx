@@ -30,12 +30,12 @@ const FormSignup = () => {
   };
 
   return (
-    <form className="flex flex-col gap-4 mt-4" onSubmit={handleSubmit(signup)}>
+    <form className="flex flex-col items-center justify-center w-2/3 gap-4 sm:w-full " onSubmit={handleSubmit(signup)}>
       <input
         defaultValue={"test@test.fr"}
         {...register("email")}
         placeholder="email"
-        className="p-4 border-2 border-gray-400"
+        className="w-full p-4 border-2 border-gray-400 sm:w-2/3"
       />
       {errors.email?.message && <p>{errors.email.message}</p>}
 
@@ -44,13 +44,13 @@ const FormSignup = () => {
         type="password"
         {...register("password")}
         placeholder="Enter your password"
-        className="p-4 border-2 border-gray-400"
+        className="w-full p-4 border-2 border-gray-400 sm:w-2/3"
       />
       {errors.password?.message && <p>{errors.password.message}</p>}
       {errorMessage && <p>{errorMessage}</p>}
       <input
         type="submit"
-        className="p-3 text-white bg-red-700 rounded-sm"
+        className="w-full p-3 text-white bg-red-700 rounded-sm sm:w-2/3"
         value={"S'inscrire"}
       />
     </form>

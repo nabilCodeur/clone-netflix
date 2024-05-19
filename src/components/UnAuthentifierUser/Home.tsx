@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { Button } from "../ui/button";
 import Banner from "./banner/HomeBanner";
 const Home = () => {
-
   return (
     <div
       style={{
@@ -16,7 +15,7 @@ const Home = () => {
       <Banner />
 
       <div className="flex flex-col items-center justify-center ">
-        <h1 className="text-3xl font-extrabold">
+        <h1 className="text-3xl font-extrabold text-center">
           Unlimited movies, TV shows, and more
         </h1>
         <br />

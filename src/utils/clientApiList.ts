@@ -14,6 +14,10 @@ MediaSchema = z.object({
   name: z.string().optional(),
 });
 
+
+
+
+
 const ListMediaSchema = z.array(MediaSchema);
 
 export const clientApiList = async (
@@ -35,3 +39,5 @@ export const clientApiList = async (
 
   return data;
 };
+
+export type Media = z.infer<typeof MediaSchema>
