@@ -3,8 +3,9 @@ import NetflixHeader from "./header/NetflixHeader";
 
 const Home = () => {
   return (
-    <div className="h-full mb-10">
+    <div className="relative w-full mb-10 h-dvh ">
       <NetflixHeader  />
+      
       <NetflixRow
         category="popular"
         sizeImage="w500"
