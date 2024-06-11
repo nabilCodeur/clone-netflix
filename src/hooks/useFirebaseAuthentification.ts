@@ -2,6 +2,7 @@ import authentification from "@/firebase/authentification";
 
 import {
   User,
+
   browserSessionPersistence,
   createUserWithEmailAndPassword,
   onAuthStateChanged,

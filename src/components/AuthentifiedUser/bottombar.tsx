@@ -21,6 +21,9 @@ const BottomBar = () => {
         <NavLink to="/tv" className={handleActiveNavigationItem}>
           Séries
         </NavLink>
+        <NavLink to="/bookmarks" className={handleActiveNavigationItem}>
+          Favoris
+        </NavLink>
       </nav>
     </div>
   );
