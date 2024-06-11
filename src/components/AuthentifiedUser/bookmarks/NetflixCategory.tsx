@@ -20,13 +20,16 @@ const NetflixCategory = ({ typeMedia }: { typeMedia: MediaEndpointApi }) => {
     isError,
     isLoading,
   } = useQuery({
-    queryKey: [`bookmarks/${typeMedia}`],
+    queryKey: ["bookmarks",typeMedia],
     queryFn: () => readBookmarks(),
   });
 
+  
+  
+
   if (isError) return <p>Une erreur s'est produite</p>;
   if (isLoading) return <p>Chargement</p>;
-  if (!bookmarksIds) return <p>no data</p>
+  if (!bookmarksIds) return <p>Aucun média</p>
 
   return (
     <div className="mx-5 my-4 space-y-5">

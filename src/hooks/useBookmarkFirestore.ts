@@ -1,7 +1,7 @@
 import { MediaEndpointApi } from "@/types";
 import { z } from "zod";
 import useFirestore from "./useFirestore";
-import React from "react";
+
 
 const BookmarkShema = z.object({
   bookmarksMovieIds: z.array(z.number()),
@@ -10,7 +10,7 @@ const BookmarkShema = z.object({
 const useBookmarkFirestore = (userId: string | null | undefined , typeMedia:MediaEndpointApi, idMedia?:number | null) => {
 
 
-  const [isBookmarkInList, setIsBookmarkInList] = React.useState(false)
+  
   const { readUserDocument, fireStoreUpdateDocument } = useFirestore("users");
   
 
@@ -37,35 +37,35 @@ const useBookmarkFirestore = (userId: string | null | undefined , typeMedia:Medi
     await fireStoreUpdateDocument(userId ?? "", {
       [bookMarksTypeFirestore]: [...initialBookmarks, idMedia],
     });
-    await checkMediaInFirestoreBookmark()
+    await isBookmarked()
   };
 
   const removeBookmarkById = async () => {
-    if (!idMedia) return
+    if (!idMedia) return null
     const bookMarksTypeFirestore =
       typeMedia === "movie" ? "bookmarksMovieIds" : "bookmarksTvIds";
     const bookmarks = await readBookmarks();
-    if (!bookmarks.includes(idMedia)) return;
+    if (!bookmarks.includes(idMedia)) return null;
 
    const updatedBookmarks = bookmarks.filter(bookmardId=>bookmardId!==idMedia)
 
     await fireStoreUpdateDocument(userId ?? "", {
       [bookMarksTypeFirestore]: updatedBookmarks,
     });
-    await checkMediaInFirestoreBookmark()
+    await isBookmarked()
   };
 
-  const checkMediaInFirestoreBookmark = async (
+  const isBookmarked = async (
    
   ) => {
-    if (!idMedia) return
+    if (!idMedia) return null
     const initialBookmarks = await readBookmarks();
-    setIsBookmarkInList(initialBookmarks.includes(idMedia));
+    return initialBookmarks.includes(idMedia);
   };
 
   const handleBookmark = async ()=>{
-    await checkMediaInFirestoreBookmark()
-    if (isBookmarkInList){
+    const isBookmarkedInList = await isBookmarked()
+    if (isBookmarkedInList){
       await removeBookmarkById()
     }
     else {
@@ -73,7 +73,7 @@ const useBookmarkFirestore = (userId: string | null | undefined , typeMedia:Medi
     }
   }
 
-  return { readBookmarks, addBookmark,  checkMediaInFirestoreBookmark , removeBookmarkById , isBookmarkInList , handleBookmark };
+  return { readBookmarks, addBookmark,isBookmarked , removeBookmarkById  , handleBookmark };
 };
 
 export default useBookmarkFirestore;

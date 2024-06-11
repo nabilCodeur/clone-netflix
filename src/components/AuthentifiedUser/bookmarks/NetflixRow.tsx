@@ -1,3 +1,4 @@
+import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 import { MediaEndpointApi } from "@/types";
 import { buildImageUrl } from "@/utils/buildImageUrl";
 import { clientApiMedia } from "@/utils/clientApiMedia";
@@ -9,11 +10,8 @@ const NetflixRow = ({
   bookmarksIds,
 }: {
   typeMedia: MediaEndpointApi;
-  bookmarksIds: number[] ;
+  bookmarksIds: number[];
 }) => {
-
-
-  
   const queries = useQueries({
     queries: bookmarksIds.map((id) => {
       return {
@@ -24,18 +22,25 @@ const NetflixRow = ({
   });
 
   return (
-    <div className="flex space-x-4">
-      {queries.map((movie) => {
-        return (
-          <Link to={`/${typeMedia}/${movie.data?.id}`} key={movie.data?.id}>
-            <img
-              src={buildImageUrl("w500", movie.data?.backdrop_path)}
-              alt={movie.data?.title ?? "Inconnu"}
-            />
-          </Link>
-        );
-      })}
-    </div>
+   
+      <Carousel orientation="horizontal" opts={{ align: "start", loop: true }}>
+        <CarouselContent>
+          {queries.map((movie) => {
+            return (
+              <CarouselItem key={movie.data?.id}>
+              <Link to={`/${typeMedia}/${movie.data?.id}`} >
+                <img
+                  src={buildImageUrl("w500", movie.data?.backdrop_path)}
+                  key={movie.data?.id}
+                  alt={movie.data?.title ?? "Inconnu"}
+                />
+              </Link>
+              </CarouselItem>
+            );
+          })}
+        </CarouselContent>
+      </Carousel>
+
   );
 };
 
