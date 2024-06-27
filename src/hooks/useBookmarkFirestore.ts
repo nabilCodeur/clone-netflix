@@ -41,11 +41,11 @@ const useBookmarkFirestore = (userId: string | null | undefined , typeMedia:Medi
   };
 
   const removeBookmarkById = async () => {
-    if (!idMedia) return
+    if (!idMedia) return null
     const bookMarksTypeFirestore =
       typeMedia === "movie" ? "bookmarksMovieIds" : "bookmarksTvIds";
     const bookmarks = await readBookmarks();
-    if (!bookmarks.includes(idMedia)) return;
+    if (!bookmarks.includes(idMedia)) return null;
 
    const updatedBookmarks = bookmarks.filter(bookmardId=>bookmardId!==idMedia)
 
@@ -58,7 +58,7 @@ const useBookmarkFirestore = (userId: string | null | undefined , typeMedia:Medi
   const isBookmarked = async (
    
   ) => {
-    if (!idMedia) return
+    if (!idMedia) return null
     const initialBookmarks = await readBookmarks();
     return initialBookmarks.includes(idMedia);
   };
