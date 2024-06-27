@@ -28,7 +28,9 @@ const NetflixHeader = ({
     isLoading,
     bannerMediaSource,
     mediaHeader,
+
     mediaId,
+
   } = useHeader(mediaType, id);
 
   const { user } = useContext(Authentification) as AuthentificationProvider;
@@ -49,6 +51,7 @@ const NetflixHeader = ({
     onSuccess: () => {
       query.invalidateQueries({
         queryKey: ["isBookmarked", mediaHeader, mediaId],
+
       });
       query.invalidateQueries({
         queryKey: ["bookmarks", mediaHeader],
@@ -59,6 +62,7 @@ const NetflixHeader = ({
   const handleBookmarksWithUseQuery = async () => {
     console.log("mutation");
     await mutation.mutate();
+
   };
 
   if (isLoading)
@@ -92,7 +96,9 @@ const NetflixHeader = ({
           }}
           className={`bg-cover h-[50vh]  sm:h-[60vh] bg-center  relative w-full `}
         >
+
           <div className="absolute z-10 space-x-2 text-end top-3/4 left-4">
+
             <Button className="uppercase bg-red-600">Lecture</Button>
             <Button
               className="uppercase "
