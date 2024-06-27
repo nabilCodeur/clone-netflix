@@ -6,7 +6,7 @@ const Banner = () => {
 
 
   return (
-    <header className="absolute top-0 w-full ">
+    <header className="absolute top-0 w-full">
       <div className="flex items-center justify-between ">
         <Link to={"/"}>
           <img src={netflixLogo} className="size-14" />

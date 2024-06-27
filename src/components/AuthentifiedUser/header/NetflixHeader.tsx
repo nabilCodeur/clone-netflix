@@ -60,7 +60,6 @@ const NetflixHeader = ({
   });
 
   const handleBookmarksWithUseQuery = async () => {
-    console.log("mutation");
     await mutation.mutate();
 
   };

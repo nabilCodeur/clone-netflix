@@ -11,6 +11,7 @@ const Home = () => {
         backgroundBlendMode: "multiply",
       }}
       className="h-[100vh] flex flex-col justify-center "
+      data-testid="unauthentified-home"
     >
       <Banner />
 
