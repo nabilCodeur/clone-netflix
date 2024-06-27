@@ -52,7 +52,7 @@ const FormLogin = () => {
       <input
         type="submit"
         className="p-2 bg-red-600 rounded-md hover:cursor-pointer "
-        value={"Sign In"}
+        value={"Sign-in"}
       />
       {errorMessage && <p>{errorMessage}</p>}
       {user?.email && <p>unknow user</p>}
