@@ -31,7 +31,7 @@ const NetflixHeader = ({
     isLoading,
     bannerMediaSource,
     mediaHeader,
-
+  
     mediaId,
   } = useHeader(mediaType, id);
 
@@ -44,7 +44,7 @@ const NetflixHeader = ({
     mediaId
   );
 
-  const { data: isBookmarkedQuery } = useQuery({
+  const { data: isBookmarkedQuery  } = useQuery({
     queryKey: ["isBookmarked", mediaHeader, mediaId],
     queryFn: isBookmarked,
   });
