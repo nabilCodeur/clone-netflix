@@ -36,14 +36,14 @@ const FormLogin = () => {
     >
       <input
         placeholder="Email"
-        defaultValue={"test@test.fr"}
+        defaultValue={import.meta.env.dev?"test@test.fr":""}
         {...register("email")}
         className="p-2 text-white border-2 border-gray-500 rounded-md bg-black/10"
       />
       {errors.email?.message && <p>{errors.email?.message}</p>}
       <input
         placeholder="password"
-        defaultValue={"testtest"}
+        defaultValue={import.meta.env.DEV?"testtest":""}
         type="password"
         {...register("password", {})}
         className="p-2 text-white border-2 border-gray-500 rounded-md bg-black/10"
