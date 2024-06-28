@@ -10,7 +10,7 @@ const NetflixApp = () => {
 
 
   return (
-    <div className="h-full text-white bg-black">
+    <div className="w-full h-full text-white ">
       {authentification?.user? <AuthentifiedUser /> : <UnAuthentifierUser />}
     </div>
   );

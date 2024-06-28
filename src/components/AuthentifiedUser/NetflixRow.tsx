@@ -9,8 +9,12 @@ import {
 import { buildImageUrl } from "../../utils/buildImageUrl";
 import { clientApiList } from "../../utils/clientApiList";
 import NetflixRowSkeleton from "../loading/NetflixRowSkeleton";
-import { Carousel, CarouselContent, CarouselItem } from "../ui/carousel";
-
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+} from "../ui/carousel";
 
 const NetflixRow = ({
   media,
@@ -25,28 +29,22 @@ const NetflixRow = ({
   sizeImage: ImageEndpointApi;
   title: string;
 }) => {
-  const getMovies = () => clientApiList(media, category);
+  const getMovies = async () => await clientApiList(media, category);
 
   const { data, isLoading, error, isError } = useQuery({
     queryKey: [`${media}/${category}`],
     queryFn: getMovies,
   });
 
-
-  
-  if (isError){
-   throw new Error(error.message)
-    
+  if (isError) {
+    return <p>Une erreur s'est produite {import.meta.env.dev??error.message}</p>;
   }
 
-
+  
 
   return (
     <div className="py-4 pl-3">
-   
       <h1 className="text-2xl font-bold uppercase">{title}</h1>
- 
-
 
       <div className="mt-4">
         {isLoading ? (
@@ -55,17 +53,21 @@ const NetflixRow = ({
           <Carousel
             orientation="horizontal"
             opts={{ align: "start", loop: true }}
+            className="w-11/12 "
           >
-            <CarouselContent className="-ml-9">
+            <CarouselContent className="">
               {data?.map((movie) => {
                 const fetchImageFormat = buildImageUrl(
                   sizeImage,
                   formatImage === "large"
-                    ? movie.poster_path
+                    ? movie.backdrop_path
                     : movie.poster_path
                 );
                 return (
-                  <CarouselItem key={movie?.id} className="pl-2 basis-1/3">
+                  <CarouselItem
+                    key={`${media}/${formatImage}/${movie?.id}`}
+                    className=" sm:basis-1/2 md:basis-1/3"
+                  >
                     <Link to={`/${media}/${movie.id}`} key={movie.id}>
                       <img
                         src={fetchImageFormat}
@@ -77,7 +79,8 @@ const NetflixRow = ({
                 );
               })}
             </CarouselContent>
-            {/* <CarouselNext /> */}
+
+            <CarouselNext className="mr-4" />
           </Carousel>
         )}
       </div>

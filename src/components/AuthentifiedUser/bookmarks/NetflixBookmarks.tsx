@@ -3,7 +3,7 @@ import NetflixCategory from "./NetflixCategory";
 
 const NetflixBookmarks = () => {
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex flex-col h-full mb-24">
       <TopHeader />
       <NetflixCategory typeMedia="movie" />
       <NetflixCategory typeMedia="tv" />

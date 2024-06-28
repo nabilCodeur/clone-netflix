@@ -3,7 +3,7 @@ import NetflixRow from "./NetflixRow";
 
 const NetfixSeries = () => {
   return (
-    <div>
+    <div className="mb-24">
       <NetflixHeader mediaType="tv" />
       <NetflixRow
         category="popular"
