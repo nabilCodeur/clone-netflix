@@ -1,3 +1,7 @@
+import { Button } from "@/components/ui/button";
+import { ToastAction } from "@/components/ui/toast";
+import { Toaster } from "@/components/ui/toaster";
+import { useToast } from "@/components/ui/use-toast";
 import useBookmarkFirestore from "@/hooks/useBookmarkFirestore";
 import {
   Authentification,
@@ -8,7 +12,6 @@ import { useContext } from "react";
 import useHeader from "../../../hooks/useHeader";
 import { MediaEndpointApi } from "../../../types";
 import HeaderSkeleton from "../../loading/HeaderSkeleton";
-import { Button } from "../../ui/button";
 import NetflixHeaderOverview from "./NetflixHeaderOverview";
 import TopHeader from "./TopHeader";
 
@@ -30,8 +33,9 @@ const NetflixHeader = ({
     mediaHeader,
 
     mediaId,
-
   } = useHeader(mediaType, id);
+
+  const { toast } = useToast();
 
   const { user } = useContext(Authentification) as AuthentificationProvider;
   const { handleBookmark, isBookmarked } = useBookmarkFirestore(
@@ -51,7 +55,6 @@ const NetflixHeader = ({
     onSuccess: () => {
       query.invalidateQueries({
         queryKey: ["isBookmarked", mediaHeader, mediaId],
-
       });
       query.invalidateQueries({
         queryKey: ["bookmarks", mediaHeader],
@@ -61,7 +64,21 @@ const NetflixHeader = ({
 
   const handleBookmarksWithUseQuery = async () => {
     await mutation.mutate();
+    if (mutation.isError) {
+      toast({
+        title: "Favoris",
+        description: "Une erreur s'est produite",
+        action: <ToastAction altText="got to undo"></ToastAction>,
+      });
+    }
 
+    if (mutation.isSuccess) {
+      toast({
+        title: "Favoris",
+        description: isBookmarkedQuery ? "Favori supprimé" : "Favori ajouté",
+        action: <ToastAction altText="got to undo"></ToastAction>,
+      });
+    }
   };
 
   if (isLoading)
@@ -95,9 +112,7 @@ const NetflixHeader = ({
           }}
           className={`bg-cover h-[50vh]  sm:h-[60vh] bg-center  relative w-full `}
         >
-
           <div className="absolute z-10 space-x-2 text-end top-3/4 left-4">
-
             <Button className="uppercase bg-red-600">Lecture</Button>
             <Button
               className="uppercase "
@@ -110,6 +125,7 @@ const NetflixHeader = ({
           </div>
         </section>
         <NetflixHeaderOverview media={media} />
+        <Toaster />
       </div>
     </>
   );
