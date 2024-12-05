@@ -1,3 +1,4 @@
+import HeaderSkeleton from "@/components/loading/HeaderSkeleton";
 import {
   Carousel,
   CarouselContent,
@@ -10,6 +11,7 @@ import { clientApiMedia } from "@/utils/clientApiMedia";
 import { useQueries } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 
+//TODO: faire la machine à laver
 const NetflixRow = ({
   typeMedia,
   bookmarksIds,
@@ -34,21 +36,23 @@ const NetflixRow = ({
     >
       <CarouselContent>
         {queries.map((movie) => {
-          return (
-            <CarouselItem
-              key={`${typeMedia}/${movie.data?.id}`}
-              className="basis-1/2 sm:basis-1/3 md:basis-1/5"
-            >
-              <Link to={`/${typeMedia}/${movie.data?.id}`}>
-                <img
-                  src={buildImageUrl("w200", movie.data?.poster_path)}
-                  key={movie.data?.id}
-                  alt={movie.data?.title ?? "Inconnu"}
-              
-                />
-              </Link>
-            </CarouselItem>
-          );
+          if (movie.isLoading) return <HeaderSkeleton />;
+          if (movie.isError || !movie) return null;
+          if (movie.isSuccess)
+            return (
+              <CarouselItem
+                key={`${typeMedia}/${movie.data?.id}`}
+                className="basis-1/2 sm:basis-1/3 md:basis-1/5"
+              >
+                <Link to={`/${typeMedia}/${movie.data?.id}`}>
+                  <img
+                    src={buildImageUrl("w200", movie.data?.poster_path)}
+                    key={movie.data?.id}
+                    alt={movie.data?.title ?? "Inconnu"}
+                  />
+                </Link>
+              </CarouselItem>
+            );
         })}
       </CarouselContent>
 

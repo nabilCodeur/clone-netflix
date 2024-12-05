@@ -37,10 +37,10 @@ const NetflixRow = ({
   });
 
   if (isError) {
-    return <p>Une erreur s'est produite {import.meta.env.dev??error.message}</p>;
+    return (
+      <p>Une erreur s'est produite {import.meta.env.dev ?? error.message}</p>
+    );
   }
-
-  
 
   return (
     <div className="py-4 pl-3">
@@ -57,6 +57,7 @@ const NetflixRow = ({
           >
             <CarouselContent className="">
               {data?.map((movie) => {
+                if (!movie) return null;
                 const fetchImageFormat = buildImageUrl(
                   sizeImage,
                   formatImage === "large"
